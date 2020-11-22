@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  product-service:
+    build: ./servicos
+    volumes:
+      - ./servicos:/usr/src/app
+    ports:
+      - 5001:80
