@@ -2,6 +2,7 @@ import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
 
+from models.forms import LoginForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your secret key'
@@ -82,6 +83,16 @@ def delete(id):
 def post(post_id):
     post = get_post(post_id)
     return render_template('post.html', post=post)
+
+@app.route('/login', methods=["GET","POST"])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        print(form.username.data)
+        print(form.password.data)
+    else:
+        print(form.errors)
+    return render_template('login.html', form=form)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
