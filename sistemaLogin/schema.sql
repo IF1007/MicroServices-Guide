@@ -1,0 +1,7 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+    email VARCHAR(50) PRIMARY KEY UNIQUE,
+    username VARCHAR(15) NOT NULL UNIQUE,
+    password VARCHAR(80) NOT NULL
+);
