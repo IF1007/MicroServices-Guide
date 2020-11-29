@@ -1,15 +1,18 @@
 version: '3'
 
 services:
-  service-blog:
-   build: ./servicos
-   volumes:
-     - ./servicos:/usr/src/app
-   ports:
-     - 5001:80
   service-login:
     build: ./sistemaLogin
     volumes:
       - ./sistemaLogin:/usr/src/login
     ports:
       - 5002:80
+  service-blog:
+    build: ./servicos
+    volumes:
+      - ./servicos:/usr/src/app
+    ports:
+      - 5001:80
+    depends_on: 
+      - service-login
+

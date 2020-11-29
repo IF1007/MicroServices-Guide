@@ -32,7 +32,7 @@ def insert_user(username, email, password):
     conn.commit()
     conn.close()
 
-def get_user(username):
+def get_user_username(username):
     conn = get_db_connection()
     cur = conn.cursor()
     cur.execute("SELECT username, email, password FROM users WHERE username = (?)",
@@ -43,40 +43,40 @@ def get_user(username):
     conn.close()
     return row
 
-# def get_user(email):
-#     conn = get_db_connection()
-#     cur = conn.cursor()
-#     cur.execute("SELECT username, email, password FROM users WHERE email = (?)",
-#                 (email,)
-#                 )
-#     row = cur.fetchone()
-#     conn.commit()
-#     conn.close()
-#     return row
+def get_user_email(email):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("SELECT username, email, password FROM users WHERE email = (?)",
+                (email,)
+                )
+    row = cur.fetchone()
+    conn.commit()
+    conn.close()
+    return row
 
 class User(UserMixin):
     pass
 
 @login_manager.user_loader
-def user_loader(username):
-    if get_user(username) is None:
+def user_loader(email):
+    if get_user_email(email= email) is None:
         return
 
     user = User()
-    user.id = username
+    user.id = email
     return user
 
 
 @login_manager.request_loader
 def request_loader(request):
-    username = request.form.get('username')
-    if get_user(username) is None:
+    email = request.form.get('email')
+    if get_user_email(email=email) is None:
         return
     user = User()
-    user.id = username
+    user.id = email
     # DO NOT ever store passwords in plaintext and always compare password
     # hashes using constant-time comparison!
-    user.is_authenticated = request.form['password'] == get_user(username=username)['password']
+    user.is_authenticated = request.form['password'] == get_user_email(email=email)['password']
     return user
 
 class LoginForm(FlaskForm):
@@ -100,12 +100,12 @@ def login():
     if form.validate_on_submit():
         username = form.username.data
         password = form.password.data
-        user = get_user(username = username)
+        user = get_user_username(username = username)
         if user:
             if check_password_hash(user['password'], password):
 
                 usr = User()
-                usr.id = user['username']
+                usr.id = user['email']
                 login_user(usr, remember=form.remember.data)
                 return redirect(url_for('dashboard'))
                 # return '<h1> You are loggin </h1>'
@@ -128,7 +128,7 @@ def signup():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html', name=current_user.username)
+    return render_template('dashboard.html', name=get_user_email(current_user.id)['username'])
 
 @app.route('/logout')
 # @login_required
