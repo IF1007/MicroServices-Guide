@@ -107,8 +107,8 @@ def login():
                 usr = User()
                 usr.id = user['username']
                 login_user(usr, remember=form.remember.data)
-                # return redirect(url_for('dashboard'))
-                return '<h1> You are loggin </h1>'
+                return redirect(url_for('dashboard'))
+                # return '<h1> You are loggin </h1>'
             return '<h1> Invalid username or password </h1>'
         else:
             return '<h1> Invalid username or password </h1>'
@@ -121,10 +121,14 @@ def signup():
     if form.validate_on_submit():
         hashed_password = generate_password_hash(form.password.data, method='sha256')
         new_user = insert_user(username=form.username.data, email=form.email.data, password=hashed_password)
-    #     return '<h1>New user has been created!</h1>'
-        return '<h1>' + form.username.data + ' ' + form.email.data + ' ' + form.password.data + '</h1>'
+        return '<h1> New user has been created! </h1>'
 
     return render_template('signup.html',form=form)
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html', name=current_user.username)
 
 @app.route('/logout')
 # @login_required
