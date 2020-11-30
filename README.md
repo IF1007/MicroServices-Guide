@@ -91,6 +91,8 @@ Primeiramente precisamos definir qual versão, escolhemos a versão 3, e quais s
 		
 Perceba que com algumas linhas de configuração vamos atingir nosso resultado esperado, que ambas as aplicações estejam rodando corretamente e sejam capazes de se comunicar entre si.
 
+<b>Obs:</b> Caso ainda esteja com dúvidas sobre como utilizamos o nosso projeto, sinta-se livre para explorar nossos códigos/arquivos, lá fizemos redirects de um sistema rodando em uma porta para outra, bem como criação e conexão em um banco de dados local e mais outros processos.
+
 E, para finalizar...
 
 ## Execução do programa
@@ -109,5 +111,5 @@ localhost:5001
 
 E <i>Voilá</i> nosso sistema estará rodando em sua máquina, sinta-se a vontade para explorar da maneira que bem entender.
 
-
+Esperamos que com esse tutorial simples algumas dúvidas a respeito dos dockerfiles e docker-compose possam ter sido esclarecidas e que agreguem valor de alguma forma no futuro
 <b>Hope you enjoy!</b>
