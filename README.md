@@ -12,7 +12,7 @@ Obs: Primeiramente gostariamos de lembrar que para utilização dos nossos proce
 
 <b>Arquitetura</b>
 
-![](/images/Arquitetura.PNG)
+![](/images/arquitetura.PNG)
 
 Como podemos perceber na arquitetura acima, temos um microsserviço relativo ao cadastros, com seu próprio banco de dados, bem como um microsserviço relativo ao fórum em si, com seu próprio banco dados.
 
@@ -72,22 +72,22 @@ Primeiramente precisamos definir qual versão, escolhemos a versão 3, e quais s
 
 * services:
     * Esse comando diz ao docker quais serão os serviços que o docker utilizará para a execução do programa
-*service-login:
-	* Esse comando diz ao docker qual será o nome de um dos nossos serviços (a tag/imagem associada ao docker)
-	* build: ./sistemaLogin - Diz ao docker para criar a imagem com o nome de sistemaLogin (abstração do comando docker build image com seus parâmetros)
-	* volumes: - ./sistemaLogin:/usr/src/login 
-		* Como configuramos no dockerfile da pasta sistemaLogin o diretorio usr/src/login passamos o mesmo nessa parte de volume para que a imagem seja criada utilizando esse diretorio.
-	* ports: - 5002:80
-		* Porta no qual será executada nossa aplicação, mapeia o que está na porta da direita (aplicação) para a porta da esquerda (de fato onde será executado o sistema)
-*service-blog:
-	* Esse comando diz ao docker qual será o nome de um dos nossos serviços (a tag/imagem associada ao docker)
-	* build: ./servicos - Diz ao docker para criar a imagem com o nome de sistemaLogin (abstração do comando docker build image com seus parâmetros)
-	* volumes: - ./servicos:/usr/src/app 
-		* Como configuramos no dockerfile da pasta servicos o diretorio usr/src/app passamos o mesmo nessa parte de volume para que a imagem seja criada utilizando esse diretorio.
-	* ports: - 5001:80
-		* Porta no qual será executada nossa aplicação, mapeia o que está na porta da direita (aplicação) para a porta da esquerda (de fato onde será executado o sistema)
-	*depends_on: - service-login
-		* Esse comando diz ao docker que esse servico que estamos tentando rodar depende dos resultados da aplicação service-login para alguns de seus funcionamentos, gerando assim uma relação entre as aplicações
+	*service-login:
+		* Esse comando diz ao docker qual será o nome de um dos nossos serviços (a tag/imagem associada ao docker)
+		* build: ./sistemaLogin - Diz ao docker para criar a imagem com o nome de sistemaLogin (abstração do comando docker build image com seus parâmetros)
+		* volumes: - ./sistemaLogin:/usr/src/login 
+			* Como configuramos no dockerfile da pasta sistemaLogin o diretorio usr/src/login passamos o mesmo nessa parte de volume para que a imagem seja criada utilizando esse diretorio.
+		* ports: - 5002:80
+			* Porta no qual será executada nossa aplicação, mapeia o que está na porta da direita (aplicação) para a porta da esquerda (de fato onde será executado o sistema)
+	*service-blog:
+		* Esse comando diz ao docker qual será o nome de um dos nossos serviços (a tag/imagem associada ao docker)
+		* build: ./servicos - Diz ao docker para criar a imagem com o nome de sistemaLogin (abstração do comando docker build image com seus parâmetros)
+		* volumes: - ./servicos:/usr/src/app 
+			* Como configuramos no dockerfile da pasta servicos o diretorio usr/src/app passamos o mesmo nessa parte de volume para que a imagem seja criada utilizando esse diretorio.
+		* ports: - 5001:80
+			* Porta no qual será executada nossa aplicação, mapeia o que está na porta da direita (aplicação) para a porta da esquerda (de fato onde será executado o sistema)
+		*depends_on: - service-login
+			* Esse comando diz ao docker que esse servico que estamos tentando rodar depende dos resultados da aplicação service-login para alguns de seus funcionamentos, gerando assim uma relação entre as aplicações
 		
 Perceba que com algumas linhas de configuração vamos atingir nosso resultado esperado, que ambas as aplicações estejam rodando corretamente e sejam capazes de se comunicar entre si.
 
