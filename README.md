@@ -12,7 +12,7 @@ Obs: Primeiramente gostariamos de lembrar que para utilização dos nossos proce
 
 <b>Arquitetura</b>
 
-![](/images/arquitetura.PNG)
+![](/images/arquitetura.png)
 
 Como podemos perceber na arquitetura acima, temos um microsserviço relativo ao cadastros, com seu próprio banco de dados, bem como um microsserviço relativo ao fórum em si, com seu próprio banco dados.
 
@@ -66,7 +66,7 @@ Agora que sabemos onde vai rodar nossa aplicação, vamos a parte mais essencial
 
 <b>Destrinchando o docker-compose:</b>
 
-![](/images/arquitetura.png)
+![](/images/docker-compose.PNG)
 
 Primeiramente precisamos definir qual versão, escolhemos a versão 3, e quais serviços utilizar para o nosso docker-compose.
 
