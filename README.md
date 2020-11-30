@@ -66,20 +66,20 @@ Agora que sabemos onde vai rodar nossa aplicação, vamos a parte mais essencial
 
 <b>Destrinchando o docker-compose:</b>
 
-![](/images/docker-compose.PNG)
+![](/images/arquitetura.png)
 
 Primeiramente precisamos definir qual versão, escolhemos a versão 3, e quais serviços utilizar para o nosso docker-compose.
 
 * services:
     * Esse comando diz ao docker quais serão os serviços que o docker utilizará para a execução do programa
-	*service-login:
+	* service-login:
 		* Esse comando diz ao docker qual será o nome de um dos nossos serviços (a tag/imagem associada ao docker)
 		* build: ./sistemaLogin - Diz ao docker para criar a imagem com o nome de sistemaLogin (abstração do comando docker build image com seus parâmetros)
 		* volumes: - ./sistemaLogin:/usr/src/login 
 			* Como configuramos no dockerfile da pasta sistemaLogin o diretorio usr/src/login passamos o mesmo nessa parte de volume para que a imagem seja criada utilizando esse diretorio.
 		* ports: - 5002:80
 			* Porta no qual será executada nossa aplicação, mapeia o que está na porta da direita (aplicação) para a porta da esquerda (de fato onde será executado o sistema)
-	*service-blog:
+	* service-blog:
 		* Esse comando diz ao docker qual será o nome de um dos nossos serviços (a tag/imagem associada ao docker)
 		* build: ./servicos - Diz ao docker para criar a imagem com o nome de sistemaLogin (abstração do comando docker build image com seus parâmetros)
 		* volumes: - ./servicos:/usr/src/app 
