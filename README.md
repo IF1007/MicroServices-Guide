@@ -86,7 +86,7 @@ Primeiramente precisamos definir qual versão, escolhemos a versão 3, e quais s
 			* Como configuramos no dockerfile da pasta servicos o diretorio usr/src/app passamos o mesmo nessa parte de volume para que a imagem seja criada utilizando esse diretorio.
 		* ports: - 5001:80
 			* Porta no qual será executada nossa aplicação, mapeia o que está na porta da direita (aplicação) para a porta da esquerda (de fato onde será executado o sistema)
-		*depends_on: - service-login
+		* depends_on: - service-login
 			* Esse comando diz ao docker que esse servico que estamos tentando rodar depende dos resultados da aplicação service-login para alguns de seus funcionamentos, gerando assim uma relação entre as aplicações
 		
 Perceba que com algumas linhas de configuração vamos atingir nosso resultado esperado, que ambas as aplicações estejam rodando corretamente e sejam capazes de se comunicar entre si.
