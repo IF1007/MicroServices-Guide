@@ -83,5 +83,22 @@ def post(post_id):
     post = get_post(post_id)
     return render_template('post.html', post=post)
 
+@app.route('/changeLogin')
+def login():
+    return redirect('http://localhost:5002/login')
+
+@app.route('/changeLogout')
+def logout():
+    return redirect('http://localhost:5002/logout')
+
+@app.route('/changeSignup')
+def signup():
+    return redirect('http://localhost:5002/signup')
+
+@app.route('/verifyCreate')
+def verifyCreate():
+    return redirect('http://localhost:5002/change')
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

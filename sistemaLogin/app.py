@@ -91,7 +91,7 @@ class RegisterForm(FlaskForm):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return redirect('http://localhost:5001')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -107,7 +107,7 @@ def login():
                 usr = User()
                 usr.id = user['email']
                 login_user(usr, remember=form.remember.data)
-                return redirect(url_for('dashboard'))
+                return redirect('http://localhost:5001')
                 # return '<h1> You are loggin </h1>'
             return '<h1> Invalid username or password </h1>'
         else:
@@ -125,16 +125,21 @@ def signup():
 
     return render_template('signup.html',form=form)
 
-@app.route('/dashboard')
-@login_required
-def dashboard():
-    return render_template('dashboard.html', name=get_user_email(current_user.id)['username'])
+# @app.route('/dashboard')
+# @login_required
+# def dashboard():
+#     return render_template('dashboard.html', name=get_user_email(current_user.id)['username'])
 
 @app.route('/logout')
-# @login_required
+@login_required
 def logout():
-    # logout_user()
+    logout_user()
     return redirect(url_for('index'))
+
+@app.route('/change')
+@login_required
+def change():
+    return redirect('http://localhost:5001/create')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
